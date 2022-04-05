@@ -1,59 +1,44 @@
-class Employee:
-    ''' This class will contain general employee attributes and methods
-    
-    additional general attributes:
-    - Sick leave
-    - Vacation
-    - Training
-    '''
 
-    num_of_employees = 0 # total amount of employees
 
-    def __init__(self, first, last, mob_phone, dept):
+class Concierge:
+    """ General concierge class"""
+
+    num_of_concierges = 0 # total amount of employees
+
+    def __init__(self, first, last, user_id, phone, tg_account, dept, remote):
+
         self.first = first
         self.last = last
-        self.mob_phone = mob_phone
-        self.dept = dept
-
-        Employee.num_of_employees += 1
-    
-    def full_emp_info(self):
-        return f"""
-Name: {self.first} {self.last}
-tel: {self.mob_phone}
-dept: {self.dept}
-            
-            """
-    @staticmethod # if you don't need to use instance or class, you can use static methods
-    def is_workday(day):
-        if day.weekday() == 5 or day.weekday() == 6:
-            return False
-        return True
-
-
-
-
-class Concierge(Employee):
-    
-    def __init__(self, first, last, mob_phone, dept, tg_account, workstation, nights=False):
-        super().__init__(first, last, mob_phone, dept)
+        self.user_id = user_id
+        self.phone = phone
         self.tg_account = tg_account
-        self.workstation = workstation
-        self.nights = nights
+        self.dept = dept
+        self.remote = remote
 
-    def full_emp_info(self):
-        return super().full_emp_info()
+        Concierge.num_of_concierges += 1
+    
+    
+    def __repr__(self):
+        return f"Concierge('{self.first}', '{self.last}', '{self.user_id}', '{self.phone}', '{self.tg_account}', '{self.dept}', '{self.remote}')"
+        
+    def __str__(self):
+        return f"{self.first} {self.last} - {self.dept}"
+    
 
+class Remote(Concierge):
+    pass
 
+class Induction(Concierge):
+    pass
 
+class Supervisor(Concierge):
+    pass
 
-emp1 = Employee('Victor', 'Menkov', 9256969698, 'Dining')
-con1 = Concierge('Pavel', 'Testov', 9646547384, 'Events', '@tg_pt', 60305, False)
+class Quality(Concierge):
+    pass
 
+class Learning(Concierge):
+    pass
 
-print(emp1.full_emp_info())
-print(con1.full_emp_info())
-
-
-
-
+class Administration(Concierge):
+    pass
